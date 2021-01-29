@@ -1,0 +1,74 @@
+<div class="login-flex">
+  <div>
+    <div>
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <span>Sample App </span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+    <div class="loginForm-background">
+      <mat-card class="content-body">
+        <mat-card-content>
+          <div class="header">
+            <h2>Login</h2>
+          </div>
+          <form (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm">
+            <div class="email-input">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input
+                  formControlName="email"
+                  matInput
+                  required
+                  [(ngModel)]="emailAddress"
+                />
+                <mat-error *ngIf="loginForm.get('email').errors?.required">
+                  Required Email Address
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+              <span class="aLink">Forgot Password?</span>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input
+                  formControlName="password"
+                  matInput
+                  [type]="hide ? 'password' : 'text'"
+                  required
+                  [(ngModel)]="pWord"
+                />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  (click)="hide = !hide"
+                  [attr.aria-label]="'Hide Password'"
+                  [attr.aria-pressed]="hide"
+                >
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+                <mat-error *ngIf="loginForm.get('password').errors?.required">
+                  Required Password!
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="submitFormMethod()"
+            >
+              Sumbit
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div>
+    <h4>email id and password(for testing purpose):</h4>
+    <h5>aaa@gmail.com | aaa12345</h5>
+  </div>
+</div>

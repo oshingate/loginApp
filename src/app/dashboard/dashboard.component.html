@@ -1,0 +1,47 @@
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row class="nav">
+      <span>Sample App </span>
+      <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<div>
+  <div class="mat-display-2">Search for contacts here:-</div>
+
+  <mat-form-field>
+    <input
+      matInput
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Search Here"
+    />
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource">
+      <!-- Position Column -->
+      <ng-container matColumnDef="FirstName">
+        <mat-header-cell *matHeaderCellDef> FirstName. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.FirstName }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="LastName">
+        <mat-header-cell *matHeaderCellDef> LastName </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.LastName }} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="info">
+        <mat-header-cell *matHeaderCellDef> GetInfo </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-raised-button color="accent">Get Info</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div>
+</div>
